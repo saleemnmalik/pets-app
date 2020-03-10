@@ -31,10 +31,12 @@ pipeline{
 
 			stage('Tomcat Deploy'){
 				steps{
+					def userHost = "ec2-user@172.31.45.34"
+					def tomcatBin = "ec2-user@172.31.45.34 /opt/tomcat8/bin"
 					sshagent(['tomcat-dev']) {
-						sh "scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.45.34:/opt/tomcat8/webapps/pets-app.war"
-						sh "ssh ec2-user@172.31.45.34 /opt/tomcat8/bin/shutdown.sh"
-						sh "ssh ec2-user@172.31.45.34 /opt/tomcat8/bin/startup.sh"
+						sh "scp -o StrictHostKeyChecking=no target/*.war ${userHost}:/opt/tomcat8/webapps/pets-app.war"
+						sh "ssh ${tomcatBin}/shutdown.sh"
+						sh "ssh ${tomcatBin}/startup.sh"
 
 					}					
 				}
