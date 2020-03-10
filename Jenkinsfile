@@ -33,8 +33,8 @@ pipeline{
 				steps{
 					sshagent(['tomcat-dev']) {
 						sh "scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.45.34:/opt/tomcat8/webapps/pets-app.war"
-						sh "ssh ec2-user@172.31.45.34 /opt/taomcat8/bin/shutdown.sh"
-						sh "ssh ec2-user@172.31.45.34 /opt/taomcat8/bin/startup.sh"
+						sh "ssh ec2-user@172.31.45.34 /opt/tomcat8/bin/shutdown.sh"
+						sh "ssh ec2-user@172.31.45.34 /opt/tomcat8/bin/startup.sh"
 
 					}					
 				}
